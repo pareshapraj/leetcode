@@ -1,19 +1,19 @@
 class Solution {
-    public int searchInsert(int[] nums, int target) {
-        int start=0;
-        int end=nums.length-1;
+   public int searchInsert(int[] nums, int target) {
+        int low = 0;
+        int high = nums.length - 1;
 
-        while(start<=end){
-            int mid=(start+end)/2;
-            
-            if(target<nums[mid]){
-                end=mid-1;
-            }else if(target>nums[mid]){
-                start=mid+1;
-            }else{
-                return mid;
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+
+            if (nums[mid] == target) {
+                return mid; // Target found
+            } else if (nums[mid] < target) {
+                low = mid + 1; // Adjust low pointer
+            } else {
+                high = mid - 1; // Adjust high pointer
             }
         }
-        return start;
+        return low; // Return the index for insertion position
     }
 }
