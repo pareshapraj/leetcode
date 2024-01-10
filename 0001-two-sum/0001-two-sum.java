@@ -6,6 +6,8 @@ class Solution {
 
         HashMap<Integer, Integer> map = new HashMap<>();
         
+
+        
         
         for(int i = 0, a;; i++){
         
