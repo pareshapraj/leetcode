@@ -1,18 +1,31 @@
 class Solution {
     public int majorityElement(int[] arr) {
-        int n= arr.length;
+        //Moores Voting Algorithm
 
-        HashMap <Integer,Integer> map= new HashMap<>();
+        int n=arr.length;
+        int element=0;
+        int count=0;
 
         for(int i=0;i<n;i++){
-            int value=map.getOrDefault(arr[i],0);
-            map.put(arr[i], value +1);
+            if(count==0){
+                element=arr[i];
+                count=1;
+            }else if(element== arr[i]){
+                count++;
+            }else{
+                count--;
+            }
         }
 
-        for(Map.Entry<Integer,Integer> it: map.entrySet()){
-            if(it.getValue() > (n/2)){
-                return it.getKey();
+        int count1=0;
+        for(int i=0;i<n;i++){
+            if(arr[i] == element){
+                count1++;
             }
+        }
+
+        if(count1 > (n/2)){
+            return element;
         }
         return -1;
     }
