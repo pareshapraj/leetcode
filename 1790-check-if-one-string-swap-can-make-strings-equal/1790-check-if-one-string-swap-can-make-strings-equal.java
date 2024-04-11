@@ -1,28 +1,21 @@
 class Solution {
     public boolean areAlmostEqual(String s1, String s2) {
-        char [] arr1= s1.toCharArray();
-        char [] arr2= s2.toCharArray();
-        int length=0;
         if(s1.equals(s2)){
             return true;
         }
-        if(s1.length() != s2.length()){
-            return false;
-        }
-        for(int i=0;i<arr1.length;i++){
-            if(arr1[i] == arr2[i]){
-                length++;
+        int count=0;
+        Set <Character> set1= new HashSet<>();
+        Set <Character> set2= new HashSet<>();
+
+        for(int i=0;i<s1.length();i++){
+            if(s1.charAt(i) != s2.charAt(i)){
+                set1.add(s1.charAt(i));
+                set2.add(s2.charAt(i));
+                count++;
             }
         }
-        if(length == (arr1.length - 2)){
-             Arrays.sort(arr1);
-             Arrays.sort(arr2);
-
-            boolean isEqual= Arrays.equals(arr1,arr2);
-
-            if(isEqual){
-                return true;
-            }
+        if(count ==2 && set1.equals(set2)){
+            return true;
         }
         return false;
     }
