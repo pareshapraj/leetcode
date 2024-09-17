@@ -2,9 +2,8 @@ class Solution {
     public int[] rearrangeArray(int[] arr) {
         int n= arr.length;
 
-        int[] ans= new int[n];
-
-        int pos=0, neg=1;
+        int [] ans= new int[n];
+        int pos=0,neg=1;
 
         for(int i=0;i<n;i++){
             if(arr[i]<0){
@@ -15,6 +14,7 @@ class Solution {
                 pos+=2;
             }
         }
+        
         return ans;
     }
 }
