@@ -1,28 +1,21 @@
 class Solution {
     public boolean canConstruct(String s, int k) {
-        int n=s.length();
-
-        if(n<k){
+        if(k>s.length()){
             return false;
         }
+        HashMap<Character, Integer> mpp= new HashMap<>();
 
-        int [] arr= new int[26];
-        for(char ch: s.toCharArray()){
-            arr[ch - 'a']++;
+        for(char c: s.toCharArray()){
+            mpp.put(c,mpp.getOrDefault(c,0)+1);
         }
 
-        int oddchar=0;
+        int odd=0;
 
-        for(int i=0;i<26;i++){
-            if(arr[i]==0) continue;
-            
-            if(arr[i]%2 == 1){
-                oddchar++;
+        for(int c: mpp.values()){
+            if(c%2 != 0){
+                odd++;
             }
         }
-        if(oddchar > k){
-            return false;
-        }
-        return true;
+        return odd<=k;
     }
 }
