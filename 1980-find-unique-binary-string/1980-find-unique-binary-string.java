@@ -1,14 +1,30 @@
+import java.util.*;
 class Solution {
     public String findDifferentBinaryString(String[] nums) {
-        StringBuilder result= new StringBuilder();
+        int n = nums.length;
 
-        for(int i=0; i< nums.length; i++){
-            if(nums[i].charAt(i) == '0'){
-                result.append('1');
-            }else{
-                result.append('0');
+        Set<String> numSet= new HashSet<>();
+        for(String num: nums){
+            numSet.add(num);
+        }
+        return generateBinary("",numSet, n);
+    }
+
+    private String generateBinary(String current, Set<String> numSet, int n){
+        if(current.length() == n){
+            if(!numSet.contains(current)){
+                return current;
+            }
+            return null;
+        }
+
+        for(char c: new char[]{'0','1'}){
+            String binaryString = generateBinary(current + c, numSet, n);
+
+            if(binaryString != null){
+                return binaryString;
             }
         }
-        return result.toString();
+        return null;
     }
 }
